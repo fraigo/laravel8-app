@@ -11,7 +11,21 @@
 |
 */
 
-$app = new Illuminate\Foundation\Application(
+class MyApp extends Illuminate\Foundation\Application{
+
+    /**
+     * Get the path to the public / web directory.
+     *
+     * @return string
+     */
+    public function publicPath()
+    {
+        return $this->basePath.DIRECTORY_SEPARATOR.'public_html';
+    }
+}
+
+
+$app = new MyApp(
     $_ENV['APP_BASE_PATH'] ?? dirname(__DIR__)
 );
 
@@ -51,5 +65,6 @@ $app->singleton(
 | from the actual running of the application and sending responses.
 |
 */
+
 
 return $app;

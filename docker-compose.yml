@@ -43,6 +43,17 @@ services:
             - 'sailmysql:/var/lib/mysql'
         networks:
             - sail
+    myadmin:
+        image: "phpmyadmin/phpmyadmin"
+        ports:
+            - '${PMA_PORT:-8022}:80'
+        environment:
+            - PMA_HOST=mysql
+            - PMA_USER=${DB_USERNAME}
+            - PMA_PASSWORD=${DB_PASSWORD}
+            - PMA_ARBITRARY=1
+        networks:
+            - sail
     redis:
         image: 'redis:alpine'
         ports:
